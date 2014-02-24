@@ -99,15 +99,28 @@ var mRounds = [
 eplApp.controller('TableCtrl', function ($scope) {
 	
 	$scope.endRound = 3;
+	$scope.startRound = 1;
 	
-	 $scope.$watch(
+	$scope.$watch(
 		// This is the listener function
 		function() { return $scope.endRound; },
 		// This is the change handler
 		function(newValue, oldValue) {
 			if ( newValue !== oldValue ) {
 				// Only increment the counter if the value changed
-					$scope.table = createTable(rounds, newValue);
+					$scope.table = createTable(rounds, $scope.startRound,  newValue);
+				}
+			}
+	);
+	
+	$scope.$watch(
+		// This is the listener function
+		function() { return $scope.startRound; },
+		// This is the change handler
+		function(newValue, oldValue) {
+			if ( newValue !== oldValue ) {
+				// Only increment the counter if the value changed
+					$scope.table = createTable(rounds, newValue,  $scope.endRound);
 				}
 			}
 	);
@@ -123,11 +136,11 @@ eplApp.controller('TableCtrl', function ($scope) {
 		
 		});*/
 	//$http.get('data/rounds.json').success(function (rounds) {
-		$scope.table = createTable(rounds, 5);
+		$scope.table = createTable(rounds, $scope.startRound, $scope.endRound);
 
 	});
 	
-function createTable(rounds, endRound) {			// doesn't create table. just returns an object of winning teams with a win count
+function createTable(rounds, startRound, endRound) {			// rounds  for data in the compatible format, start round and end round for culling purposes
 	var cRound = {};	// current round, current game. Variables reserved for clarity
 	var cGame = {};
 
@@ -166,10 +179,9 @@ function createTable(rounds, endRound) {			// doesn't create table. just returns
 	var addWin = add("wins");
 	var addLoss = add("losses");
 	var addDraw = add("draws");
+	var roundIndex = startRound - 1;
 	
-	var rounIndex = 0;
-	
-	for (var roundIndex = 0; roundIndex < rounds.length && roundIndex < endRound; roundIndex++) {
+	for (; roundIndex < rounds.length && roundIndex < endRound; roundIndex++) {
 		cRound = rounds[roundIndex];
 		for (var gameIndex = 0; gameIndex < cRound.length; gameIndex++) {
 			cGame = cRound[gameIndex];
