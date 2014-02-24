@@ -1,0 +1,36 @@
+[{
+	"name": "ManCity",
+	"wins": 4,
+	"draws": 0,
+	"losses": 1,
+	"pts": 12
+      },
+      {
+	"name":"Arsenal",
+	"wins": 3,
+	"draws": 0,
+	"losses": 2,
+	"pts": 9
+      },
+      {
+      
+	"name": "Chelsea",
+	"wins": 2,
+	"draws": 3,
+	"losses": 0,
+	"pts": 9
+      },
+      {
+	"name": "Liverpool",
+	"wins": 3,
+	"draws": 1,
+	"losses": 1,
+	"pts": 10
+      },
+      {
+	"name": "Everton",
+	"wins": 1,
+	"draws": 3,
+	"losses": 1,
+	"pts": 6
+      }]

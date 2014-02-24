@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="eplApp">
+<head>
+  <meta charset="utf-8">
+  <title>Premier League Table</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="TableCtrl">
+
+ 
+  <table>
+  <tr class="tableheader">
+  <td>Pos</td>
+  <td>Club</td>
+  <td>Wins</td>
+  <td>Draws</td>
+<td>Losses</td>
+<td>Points</td>
+</tr>
+<tr ng-repeat="club in table | orderBy:'-pts'">
+  <td>{{$index + 1}}</td>
+  <td>{{club.name}}</td>
+  <td>{{club.wins}}</td>
+  <td>{{club.draws}}</td>
+<td>{{club.losses}}</td>
+<td>{{club.pts}}</td>
+</tr>
+
+</table>
+
+<input type="number" ng-model="startRound" placeholder="Starting round"><br>
+<input type="number" value="3"  ng-model="endRound">
+  
+
+</body>
+</html>
