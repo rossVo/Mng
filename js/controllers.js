@@ -1,7 +1,5 @@
 'use strict';
 
-var eplApp = angular.module('eplApp',[]);
-
 var mRounds = [
   [
     {
@@ -96,47 +94,51 @@ var mRounds = [
 
 ];
 
-eplApp.controller('TableCtrl', function ($scope) {
-	
-	$scope.endRound = 3;
-	$scope.startRound = 1;
-	
-	$scope.$watch(
-		// This is the listener function
-		function() { return $scope.endRound; },
-		// This is the change handler
-		function(newValue, oldValue) {
-			if ( newValue !== oldValue ) {
-					$scope.table = createTable(rounds, $scope.startRound,  newValue);
-				}
-			}
-	);
-	
-	$scope.$watch(
-		// This is the listener function
-		function() { return $scope.startRound; },
-		// This is the change handler
-		function(newValue, oldValue) {
-			if ( newValue !== oldValue ) {
-					$scope.table = createTable(rounds, newValue,  $scope.endRound);
-				}
-			}
-	);
-	
-	var rounds = mRounds;
-	
-	/*
-	$http.get('data/mocktable.json').success(function (data) {
-	//$http.get('data/rounds.json').success(function (data) {
-			
-		//$scope.table = createTable(data);	
-				
-		
-		});*/
-	//$http.get('data/rounds.json').success(function (rounds) {
-		$scope.table = createTable(rounds, $scope.startRound, $scope.endRound);
+//var eplApp = angular.module('eplApp',[]);
 
-	});
+angular.module('eplApp',['dataGenerators'])
+
+	.controller('TableCtrl', ['$scope','createTable', function ($scope, crtT) {
+		
+		$scope.endRound = 3;
+		$scope.startRound = 1;
+		
+		$scope.$watch(
+			// This is the listener function
+			function() { return $scope.endRound; },
+			// This is the change handler
+			function(newValue, oldValue) {
+				if ( newValue !== oldValue ) {
+						$scope.table = crtT.createTable(rounds, $scope.startRound,  newValue);
+					}
+				}
+		);
+		
+		$scope.$watch(
+			// This is the listener function
+			function() { return $scope.startRound; },
+			// This is the change handler
+			function(newValue, oldValue) {
+				if ( newValue !== oldValue ) {
+						$scope.table = crtT.createTable(rounds, newValue,  $scope.endRound);
+					}
+				}
+		);
+		
+		var rounds = mRounds;
+		
+		/*
+		$http.get('data/mocktable.json').success(function (data) {
+		//$http.get('data/rounds.json').success(function (data) {
+				
+			//$scope.table = createTable(data);	
+					
+			
+			});*/
+		//$http.get('data/rounds.json').success(function (rounds) {
+			$scope.table = crtT.createTable(rounds, $scope.startRound, $scope.endRound);
+	
+		}]);
 	
 function createTable(rounds, startRound, endRound) {			// rounds  for data in the compatible format, start round and end round for culling purposes
 	var cRound = {};	// current round, current game. Variables reserved for clarity
