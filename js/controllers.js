@@ -136,7 +136,7 @@ angular.module('eplApp',['dataGenerators'])
 			
 			});*/
 		//$http.get('data/rounds.json').success(function (rounds) {
-			$scope.table = crtT.createTable(rounds, $scope.startRound, $scope.endRound);
+		$scope.table = crtT.createTable(rounds, $scope.startRound, $scope.endRound);
 	
 		}]);
 	
