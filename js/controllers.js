@@ -107,7 +107,6 @@ eplApp.controller('TableCtrl', function ($scope) {
 		// This is the change handler
 		function(newValue, oldValue) {
 			if ( newValue !== oldValue ) {
-				// Only increment the counter if the value changed
 					$scope.table = createTable(rounds, $scope.startRound,  newValue);
 				}
 			}
@@ -119,7 +118,6 @@ eplApp.controller('TableCtrl', function ($scope) {
 		// This is the change handler
 		function(newValue, oldValue) {
 			if ( newValue !== oldValue ) {
-				// Only increment the counter if the value changed
 					$scope.table = createTable(rounds, newValue,  $scope.endRound);
 				}
 			}

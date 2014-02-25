@@ -1,11 +1,17 @@
 /* app css stylesheet */
 
 body {
-  padding-top: 20px;
-  padding: 10px;
+
+  padding: 20px;
 }
 
 .tableheader {
 	font-size: 20pt;
 	background-color: #FFF;
 }
+
+table#table1 {
+    width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+  }
