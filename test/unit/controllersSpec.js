@@ -92,6 +92,16 @@ describe('Global data creation functions', function () {
 
 });
 
+describe('eplApp controllers', function () {
+
+	beforeEach(module('eplApp'));
+	it('test', function () {
+		expect(true).toBe(true);	
+	})
+
+});
+
+
 /*
 describe('eplApp controllers', function() {
 
