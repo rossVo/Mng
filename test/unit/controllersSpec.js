@@ -93,7 +93,7 @@ describe('Global data creation functions', function () {
 });*/
 
 describe('DataGenerators', function () {
-	describe('createTable', function () {
+	describe('dataGen', function () {
 		
 		var roundsData;
 		var service;
@@ -101,8 +101,8 @@ describe('DataGenerators', function () {
 		
 		beforeEach(function () {
 			module('dataGenerators');				// open relevant module
-			inject(function (createTable) {		// injector will find service by it name 'createTable'
-				service = createTable;				// set variable service to refer to createTable object so that we could access it later in 'it'
+			inject(function (dataGen) {		// injector will find service by it name 'dataGen'
+				service = dataGen;				// set variable service to refer to dataGen object so that we could access it later in 'it'
 			})
 		
 		});

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dataGenerators',[])
-	.service('createTable', function () {
+	.service('dataGen', function () {
 			this.createTable = function (rounds, startRound, endRound) {			// rounds  for data in the compatible format, start round and end round for culling purposes
 				var cRound = {};	// current round, current game. Variables reserved for clarity
 				var cGame = {};
@@ -57,6 +57,31 @@ angular.module('dataGenerators',[])
 				}
 				return acTeamsArray;
 							
-				}		
+				}
+		this.generateRounds = function (teamsArray, roundsCount, FaceToFaceCount) {
+			
+			function removeTeam (teamToRemove, tArray) {
+				for (i = 0; i < tArray.length; ++i) {
+    				if (tArray[i] === teamToRemove) {
+        				tArray.splice(i--, 1);
+    				}
+				}
+			}
+			
+			//var facingPool;								// Array of arrays of teams each team can still face.
+			
+			//for (var teamIndex = 0; teamIndex < teamsArray.length; teamIndex++) {
+			
+			
+			//}			
+			
+			
+			
+			
+			
+			
+			
+							
 				
 	});
+	

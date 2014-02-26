@@ -98,7 +98,7 @@ var mRounds = [
 
 angular.module('eplApp',['dataGenerators'])
 
-	.controller('TableCtrl', ['$scope','createTable', function ($scope, crtT) {
+	.controller('TableCtrl', ['$scope','dataGen', function ($scope, dataGenServ) {
 		
 		$scope.endRound = 3;
 		$scope.startRound = 1;
@@ -109,7 +109,7 @@ angular.module('eplApp',['dataGenerators'])
 			// This is the change handler
 			function(newValue, oldValue) {
 				if ( newValue !== oldValue ) {
-						$scope.table = crtT.createTable(rounds, $scope.startRound,  newValue);
+						$scope.table = dataGenServ.createTable(rounds, $scope.startRound,  newValue);
 					}
 				}
 		);
@@ -120,7 +120,7 @@ angular.module('eplApp',['dataGenerators'])
 			// This is the change handler
 			function(newValue, oldValue) {
 				if ( newValue !== oldValue ) {
-						$scope.table = crtT.createTable(rounds, newValue,  $scope.endRound);
+						$scope.table = dataGenServ.createTable(rounds, newValue,  $scope.endRound);
 					}
 				}
 		);
@@ -136,7 +136,7 @@ angular.module('eplApp',['dataGenerators'])
 			
 			});*/
 		//$http.get('data/rounds.json').success(function (rounds) {
-		$scope.table = crtT.createTable(rounds, $scope.startRound, $scope.endRound);
+		$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
 	
 		}]);
 	
