@@ -125,7 +125,9 @@ angular.module('eplApp',['dataGenerators'])
 				}
 		);
 		
-		var rounds = mRounds;
+		//var rounds = mRounds;
+		
+		var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle","Barcastle"]);
 		
 		/*
 		$http.get('data/mocktable.json').success(function (data) {
