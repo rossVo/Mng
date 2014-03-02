@@ -100,7 +100,7 @@ angular.module('eplApp',['dataGenerators'])
 
 	.controller('TableCtrl', ['$scope','dataGen', function ($scope, dataGenServ) {
 		
-		$scope.endRound = 10;
+		$scope.endRound = 11;
 		$scope.startRound = 1;
 		
 		$scope.$watch(
@@ -139,6 +139,11 @@ angular.module('eplApp',['dataGenerators'])
 			});*/
 		//$http.get('data/rounds.json').success(function (rounds) {
 		$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
+		
+		$scope.regen = function () {
+			rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
+			$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
+		}
 	
 		}]);
 	
