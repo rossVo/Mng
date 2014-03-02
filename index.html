@@ -33,10 +33,10 @@
 </table>
 
 
-<input type="number"  placeholder="Starting round"><br>
-<input type="number" ><br>
+<input type="number" ng-model="startRound" placeholder="Starting round"><br>
+<input type="number" ng-model="endRound" ><br>
 <input type="range" ng-model="startRound" name="points" min="1" max="11"><br>
-<input type="range" ng-model="endRound" name="points" min="2" max="11"><br>
+<input type="range" ng-model="endRound" name="points" min="1" max="11"><br>
 <input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate">
 
   

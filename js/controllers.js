@@ -109,7 +109,10 @@ angular.module('eplApp',['dataGenerators'])
 			// This is the change handler
 			function(newValue, oldValue) {
 				if ( newValue !== oldValue ) {
-						$scope.table = dataGenServ.createTable(rounds, $scope.startRound,  newValue);
+						if (newValue <= $scope.startRound) {}
+						else { 
+							$scope.table = dataGenServ.createTable(rounds, $scope.startRound,  newValue);
+						}
 					}
 				}
 		);
@@ -120,7 +123,11 @@ angular.module('eplApp',['dataGenerators'])
 			// This is the change handler
 			function(newValue, oldValue) {
 				if ( newValue !== oldValue ) {
-						$scope.table = dataGenServ.createTable(rounds, newValue,  $scope.endRound);
+						console.log(newValue);
+						if (newValue >= $scope.endRound) {}
+						else {
+							$scope.table = dataGenServ.createTable(rounds, newValue,  $scope.endRound);
+						}
 					}
 				}
 		);
