@@ -100,7 +100,7 @@ angular.module('eplApp',['dataGenerators'])
 
 	.controller('TableCtrl', ['$scope','dataGen', function ($scope, dataGenServ) {
 		
-		$scope.endRound = 3;
+		$scope.endRound = 10;
 		$scope.startRound = 1;
 		
 		$scope.$watch(
@@ -127,7 +127,7 @@ angular.module('eplApp',['dataGenerators'])
 		
 		//var rounds = mRounds;
 		
-		var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle","Barcastle"]);
+		var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
 		
 		/*
 		$http.get('data/mocktable.json').success(function (data) {

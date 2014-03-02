@@ -101,7 +101,7 @@ describe('DataGenerators', function () {
 		
 		beforeEach(function () {
 			module('dataGenerators');				// open relevant module
-			inject(function (dataGen) {		// injector will find service by it name 'dataGen'
+			inject(function (dataGen) {		// injector will find service by its name 'dataGen'
 				service = dataGen;				// set variable service to refer to dataGen object so that we could access it later in 'it'
 			})
 		
