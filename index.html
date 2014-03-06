@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Premier League Table</title>
-  <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  
   
 </head>
 <body ng-controller="TableCtrl">
@@ -35,11 +34,15 @@
 <input type="number" ng-model="endRound" ><br>
 <input type="range" ng-model="startRound" name="points" min="1" max="11"><br>
 <input type="range" ng-model="endRound" name="points" min="1" max="11"><br>
-<input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate">
+<input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate"><br>
 
   
 <script src="lib/angular/angular.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/services.js"></script>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+
+  
 </body>
 </html>
