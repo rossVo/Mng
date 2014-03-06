@@ -93,8 +93,6 @@ angular.module('dataGenerators', [])
             round[0] = {};
             
             var rl = rollForResult(0, slots[0]);
-            //round[0]["winteam"] = tArray[0]; //team1
-            //round[0]["lossteam"] = tArray[slots[0]]; // team1 always plays against slot 0
             round[0][rl.result1] = tArray[0]; //team1
             round[0][rl.result2] = tArray[slots[0]]; // team1 always plays against slot 0
 
@@ -106,8 +104,6 @@ angular.module('dataGenerators', [])
 					 var roll = rollForResult( teamIndex1, teamIndex2);      	
             	
                 round[gameIndex] = {};
-                //round[gameIndex]["winteam"] = tArray[slots[slotIndex]];
-                //round[gameIndex]["lossteam"] = tArray[slots[slots.length - pcounter]];
                 round[gameIndex][roll.result1] = tArray[teamIndex1];
                 round[gameIndex][roll.result2] = tArray[teamIndex2];
                 pcounter++;
@@ -135,7 +131,7 @@ angular.module('dataGenerators', [])
 	         rotateSlots(slots);
 	     }
 	     
-		  //alert(JSON.stringify(rounds));	     
+		  	     
 	     return rounds;
 
     }
