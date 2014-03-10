@@ -1,41 +1,34 @@
 'use strict';
 
-angular.module('eplApp',['dataGenerators'])
+angular.module('eplApp',['dataGenerators', 'ngSlider'])
+//angular.module('eplApp',['ngSlider'])
 
 	.controller('TableCtrl', ['$scope','dataGen', function ($scope, dataGenServ) {
+	//.controller('TableCtrl', ['$scope', function ($scope) {	
 		
 		$scope.endRound = 11;
 		$scope.startRound = 1;
 		
-		$scope.$watch(
-			// This is the listener function
-			function() { return $scope.endRound; },
-			// This is the change handler
-			function(newValue, oldValue) {
-				if ( newValue !== oldValue ) {
-						if (newValue <= $scope.startRound) {}
-						else { 
-							$scope.table = dataGenServ.createTable(rounds, $scope.startRound,  newValue);
-						}
-					}
-				}
-		);
+		$scope.value = "1;12";
+		$scope.options = {       
+        from: 1,
+        to: 11,
+        step: 1,
+        dimension: " round"        
+      };
 		
 		$scope.$watch(
 			// This is the listener function
-			function() { return $scope.startRound; },
+			function() { return $scope.value },
 			// This is the change handler
 			function(newValue, oldValue) {
 				if ( newValue !== oldValue ) {
-						if (newValue >= $scope.endRound) {}
-						else {
-							$scope.table = dataGenServ.createTable(rounds, newValue,  $scope.endRound);
-						}
+						var res = newValue.split(";");
+						$scope.table = dataGenServ.createTable(rounds, parseInt(res[0]),  parseInt(res[1])); // parseInt(res[0]) - starting round, parseInt(res[1]) - ending round 
 					}
 				}
-		);
+		);	
 		
-
 		
 		var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
 		$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);

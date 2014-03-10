@@ -8,7 +8,7 @@
 </head>
 <body ng-controller="TableCtrl">
 
- 
+
   <table id="table1">
   <tr class="tableheader">
   <td>Pos</td>
@@ -29,17 +29,26 @@
 
 </table>
 
+<input ng-model="value"  type="text" id="mySlider1" slider options="options" /><br>
 
-<input type="number" ng-model="startRound" placeholder="Starting round"><br>
-<input type="number" ng-model="endRound" ><br>
-<input type="range" ng-model="startRound" name="points" min="1" max="11"><br>
-<input type="range" ng-model="endRound" name="points" min="1" max="11"><br>
-<input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate"><br>
+<input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate">
 
   
-<script src="lib/angular/angular.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/services.js"></script>
+
+
+<script type="text/javascript" src="lib/angular/angular.js"></script>	
+<script type="text/javascript" src="lib/angular/angular-sanitize.js"></script>	
+<script type="text/javascript" src="lib/angular/angular-mocks.js"></script>	
+<script type="text/javascript" src="lib/jquery/jquery.js"></script>	
+<script type="text/javascript" src="lib/ng-slider/ng-slider.js"></script>
+
+
+<script type="text/javascript" src="js/controllers.js"></script>
+<script type="text/javascript" src="js/services.js"></script>
+
+<link rel="stylesheet" href="css/ng-slider.css">
+
+
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/bootstrap.css">
 
