@@ -19,12 +19,59 @@ angular.module('dataGenerators', [])
         			if (roll1 === roll2) return { result1: "drawnteam1", result2: "drawnteam2" };
         			else if (roll1 > roll2) return { result1: "winteam", result2: "lossteam" };
         			else if (roll1 < roll2) return { result1: "lossteam", result2: "winteam" };    		
-        	}    
-        
-	 
-	 })
+        	}
+        	
+    this.shuffleArray = function (array) {
+		  var currentIndex = array.length
+		    , temporaryValue
+		    , randomIndex;
+		
+		  while (0 !== currentIndex) {
+		
+
+		    randomIndex = Math.floor(Math.random() * currentIndex);
+		    currentIndex -= 1;
+
+		    temporaryValue = array[currentIndex];
+		    array[currentIndex] = array[randomIndex];
+		    array[randomIndex] = temporaryValue;
+		  }
+		
+		  return array;
+		}
+		
+	})	
 
     .service('dataGen', function (dataUtils) {
+    	
+	 this.genNames = function (teamCount) {
+	 	
+	 	if (teamCount % 2 != 0) teamCount--;	// make sure teamCount is even before proceeding 
+	 	
+	 	if (teamCount < 6) teamCount = 6;
+	 	else if (teamCount > 30 ) teamCount = 30;
+	 	
+	 	var tSuffixes = ["City", "Real", "Athletic", "United", "Wanderers", "Strikers", "Town", "Rovers", "FC", "FC", "FC", "FC", "", "", "", "", "", ];
+	 	var tCities = ["Addingham", "Baildon", "Bingley", "Burley-in-Wharfedale", "Cottingley", "Crossflatts", "Cullingworth", "Denholme", "East and West Morton", 
+	 	"Eccleshill", "Eldwick", "Esholt", "Gilstead", "Harden", "Haworth", "Ilkley", "Keighley", "Menston", "Oakworth", "Oxenhope", "Queensbury", 
+	 	"Riddlesden", "Saltaire", "Sandy Lane", "Shipley", "Silsden", "Stanbury", "Steeton", "Thornbury", "Thornton", "Tong", "Undercliffe", 
+	 	"Wilsden", "Almondbury", "Batley", "Birkby", "Birkenshaw", "Birstall", "Cleckheaton", "Dalton", "Denby Dale", "Dewsbury", "Emley", "Golcar",
+	 	 "Gomersal", "Hartshead", "Hartshead Moor", "Heckmondwike", "Holmfirth", "Honley", "Kirkburton", "Kirkheaton", "Linthwaite", "Liversedge", 
+	 	 "Marsden", "Meltham", "Mirfield", "New Mill", "Norristhorpe", "Roberttown", "Scammonden", "Shelley","Shepley", "Skelmanthorpe", "Slaithwaite", "Thornhill"];
+	 	 
+	 	tCities = dataUtils.shuffleArray(tCities);
+	 	
+	 	var len = tSuffixes.length;
+	 	
+	 	var generatedTeams = []; 
+	 
+	 	for (var i = 0; i < teamCount; i++) {
+	 		generatedTeams.push(tCities[i] + ' ' + tSuffixes[Math.floor(Math.random() * (len-1) )]);	 		
+	 	}
+	 	
+	 	return generatedTeams;
+	 }    	
+    	
     this.createTable = function (rounds, startRound, endRound) { // rounds  for data in the compatible format, start round and end round for culling purposes
         var cRound = {}; // current round, current game. Variables reserved for clarity
         var cGame = {};

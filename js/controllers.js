@@ -12,7 +12,7 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		$scope.value = "1;12";
 		$scope.options = {       
         from: 1,
-        to: 11,
+        to: 19,
         step: 1,
         smooth: false,
         dimension: " round"        
@@ -31,12 +31,18 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		);	
 		
 		
-		var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
-		$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
+		//var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
+		var initSliderValues = $scope.value.split(";");
+		var tNames = dataGenServ.genNames(20);
+		var rounds = dataGenServ.generateRounds(tNames);
+		//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
+		$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1]);
 		
 		$scope.regen = function () {
-			rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
-			$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
+			var curSliderValues = $scope.value.split(";");
+			rounds = dataGenServ.generateRounds(tNames);
+			//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
+			$scope.table = dataGenServ.createTable(rounds, curSliderValues[0], curSliderValues[1]);
 		}
 	
 }]);

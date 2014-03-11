@@ -1,96 +1,7 @@
 'use strict';
 
 /* jasmine specs for controllers go here */
-/*
-describe('Global data creation functions', function () {
-	
-	describe('createTable function', function () {
-		
-		var roundsData;
-		var tableData;
 
-		beforeEach(function () {
-			
-			roundsData = [
-		  [
-		    {
-		      "winteam":"ManCity",
-		      "lossteam":"Chelsea"
-		    },
-		    {
-		      "drawnteam1":"Arsenal",
-		      "drawnteam2":"Liverpool"
-		    },
-		    {
-		      "winteam":"Everton",
-		      "lossteam":"Tottenham"
-		    },
-		    {
-		      "winteam":"ManUnited",
-		      "lossteam":"Newcastle"
-		    }    
-		  ],
-		  [
-		    {
-		      "winteam":"ManCity",
-		      "lossteam":"Arsenal"
-		    },
-		    {
-		      "drawnteam1":"Newcastle",
-		      "drawnteam2":"Tottenham"
-		    },
-		    {
-		      "winteam":"Liverpool",
-		      "lossteam":"Everton"
-		    },
-		    {
-		      "winteam":"Chelsea",
-		      "lossteam":"ManUnited"
-		    }    
-		  ],
-		  [
-		    {
-		      "winteam":"ManCity",
-		      "lossteam":"Everton"
-		    },
-		    {
-		      "drawnteam1":"ManUnited",
-		      "drawnteam2":"Newcastle"
-		    },
-		    {
-		      "winteam":"Chelsea",
-		      "lossteam":"Tottenham"
-		    },
-		    {
-		      "winteam":"Arsenal",
-		      "lossteam":"Liverpool"
-		    }    
-		  ]
-		];
-		
-		tableData = createTable(roundsData, 1, 3);
-				
-		
-		});
-		it('mancity should have 3 wins considering the data', function () {
-			expect(tableData[0]["wins"]).toEqual(3);
-			
-		});
-		
-		it('It should come up with 8 teams, given the data', function () {
-			expect(tableData.length).toEqual(8);			
-			});
-		
-		it('Second team in array should be Chelsea', function () {
-			expect(tableData[1]["name"]).toEqual("Chelsea");
-				
-		
-		});	
-	
-	});
-
-
-});*/
 
 describe('DataGenerators', function () {
 	
@@ -168,77 +79,100 @@ describe('DataGenerators', function () {
 		
 		});
 		
-		beforeEach(function () {
+		describe('generateNames spec', function () {
 				
-				roundsData = [				// initialise testing data
-				  [
-				    {
-				      "winteam":"ManCity",
-				      "lossteam":"Chelsea"
-				    },
-				    {
-				      "drawnteam1":"Arsenal",
-				      "drawnteam2":"Liverpool"
-				    },
-				    {
-				      "winteam":"Everton",
-				      "lossteam":"Tottenham"
-				    },
-				    {
-				      "winteam":"ManUnited",
-				      "lossteam":"Newcastle"
-				    }    
-				  ],
-				  [
-				    {
-				      "winteam":"ManCity",
-				      "lossteam":"Arsenal"
-				    },
-				    {
-				      "drawnteam1":"Newcastle",
-				      "drawnteam2":"Tottenham"
-				    },
-				    {
-				      "winteam":"Liverpool",
-				      "lossteam":"Everton"
-				    },
-				    {
-				      "winteam":"Chelsea",
-				      "lossteam":"ManUnited"
-				    }    
-				  ],
-				  [
-				    {
-				      "winteam":"ManCity",
-				      "lossteam":"Everton"
-				    },
-				    {
-				      "drawnteam1":"ManUnited",
-				      "drawnteam2":"Newcastle"
-				    },
-				    {
-				      "winteam":"Chelsea",
-				      "lossteam":"Tottenham"
-				    },
-				    {
-				      "winteam":"Arsenal",
-				      "lossteam":"Liverpool"
-				    }    
-				  ]
-				];
+				it('genNames should only give even number of teams', function () {
+					expect(service.genNames(11).length % 2).toEqual(0);										
+				});
 				
-				tableData = service.createTable(roundsData, 1, 3);	// createTable()		
-						
-			});
-			
-			it('mancity should have 3 wins considering the data', function () {
-				expect(tableData[0]["wins"]).toEqual(3); });
+				it('genNames should give correct number of teams', function () {
+					expect(service.genNames(20).length).toEqual(20);			
 				
-			it('It should come up with 8 teams, given the data', function () {
-				expect(tableData.length).toEqual(8);});
+				});
+				
+				it('genNames should exceed the limit of 30 teams and minimum of 6 teams', function () {
+					expect(service.genNames(55).length).toEqual(30);
+					expect(service.genNames(2).length).toEqual(6);					
+				});		
 		
-			it('Second team in array should be Chelsea', function () {
-				expect(tableData[1]["name"]).toEqual("Chelsea");});	
+		
+		});		
+		
+		
+		
+		describe('createTable', function () {
+			beforeEach(function () {
+					
+					roundsData = [				// initialise testing data
+					  [
+					    {
+					      "winteam":"ManCity",
+					      "lossteam":"Chelsea"
+					    },
+					    {
+					      "drawnteam1":"Arsenal",
+					      "drawnteam2":"Liverpool"
+					    },
+					    {
+					      "winteam":"Everton",
+					      "lossteam":"Tottenham"
+					    },
+					    {
+					      "winteam":"ManUnited",
+					      "lossteam":"Newcastle"
+					    }    
+					  ],
+					  [
+					    {
+					      "winteam":"ManCity",
+					      "lossteam":"Arsenal"
+					    },
+					    {
+					      "drawnteam1":"Newcastle",
+					      "drawnteam2":"Tottenham"
+					    },
+					    {
+					      "winteam":"Liverpool",
+					      "lossteam":"Everton"
+					    },
+					    {
+					      "winteam":"Chelsea",
+					      "lossteam":"ManUnited"
+					    }    
+					  ],
+					  [
+					    {
+					      "winteam":"ManCity",
+					      "lossteam":"Everton"
+					    },
+					    {
+					      "drawnteam1":"ManUnited",
+					      "drawnteam2":"Newcastle"
+					    },
+					    {
+					      "winteam":"Chelsea",
+					      "lossteam":"Tottenham"
+					    },
+					    {
+					      "winteam":"Arsenal",
+					      "lossteam":"Liverpool"
+					    }    
+					  ]
+					];
+					
+					tableData = service.createTable(roundsData, 1, 3);	// createTable()		
+							
+				});
+				
+				it('mancity should have 3 wins considering the data', function () {
+					expect(tableData[0]["wins"]).toEqual(3); });
+					
+				it('It should come up with 8 teams, given the data', function () {
+					expect(tableData.length).toEqual(8);});
+			
+				it('Second team in array should be Chelsea', function () {
+					expect(tableData[1]["name"]).toEqual("Chelsea");});
+			});	
 	
 	
 	});
