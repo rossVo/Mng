@@ -93,6 +93,67 @@ describe('Global data creation functions', function () {
 });*/
 
 describe('DataGenerators', function () {
+	
+	describe('dataUtils', function () {
+
+		var serviceObj;
+		
+		
+		beforeEach(function () {
+			
+			module('dataGenerators');
+			inject(function (dataUtils) {
+				serviceObj = dataUtils;			
+			})
+		
+		});
+		
+		it('roll function result should be between -8 and 10', function () {
+			var result = serviceObj.roll(5);
+			expect(result).toBeLessThan(11);
+			expect(result).toBeGreaterThan(-9);
+			
+			result = serviceObj.roll(0); expect(result).toBeLessThan(11); expect(result).toBeGreaterThan(-9);
+			result = serviceObj.roll(3); expect(result).toBeLessThan(11); expect(result).toBeGreaterThan(-9);
+			result = serviceObj.roll(33); expect(result).toBeLessThan(11); expect(result).toBeGreaterThan(-9);		
+		
+		});
+		
+		it('rollForResult cannot return an empty object', function () {
+			var result = serviceObj.rollForResult(1,1);			
+			expect(result).not.toBeNull();			
+		});
+		
+		it('rollForResult cannot return two winning teams', function () {
+			var result = serviceObj.rollForResult(1,1);			
+			expect(result).not.toEqual({result1:"winteam",result2:"winteam"});			
+		});
+		
+		it('rollForResult cannot return two losing teams', function () {
+			var result = serviceObj.rollForResult(1,1);			
+			expect(result).not.toEqual({result1:"lossteam",result2:"lossteam"});			
+		});
+		
+		it('rollForResult should return either one winning team and losing team or two drawnteams', function () {			
+				
+			
+			var result = serviceObj.rollForResult(1,1);
+			
+			var pass = function (r) {
+				var res = JSON.stringify(r);				
+				
+				if (res === JSON.stringify({result1:"winteam",result2:"lossteam"}) ) return true;
+				else if (res === JSON.stringify({result1:"lossteam",result2:"winteam"}) ) return true;
+				else if (res === JSON.stringify({result1:"drawnteam2",result2:"drawnteam2"}) ) return true;
+				else if (res === JSON.stringify({result1:"drawnteam1",result2:"drawnteam2"}) ) return true;
+				else return false;				
+			}		
+						
+			expect(pass(result)).toBe(true);			
+		});	
+	
+	});	
+	
 	describe('dataGen', function () {
 		
 		var roundsData;
@@ -100,7 +161,7 @@ describe('DataGenerators', function () {
 		var tableData;
 		
 		beforeEach(function () {
-			module('dataGenerators');				// open relevant module
+			module('dataGenerators');				// open relevant module for injector
 			inject(function (dataGen) {		// injector will find service by its name 'dataGen'
 				service = dataGen;				// set variable service to refer to dataGen object so that we could access it later in 'it'
 			})
@@ -109,7 +170,7 @@ describe('DataGenerators', function () {
 		
 		beforeEach(function () {
 				
-				roundsData = [
+				roundsData = [				// initialise testing data
 				  [
 				    {
 				      "winteam":"ManCity",

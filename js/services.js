@@ -1,7 +1,30 @@
 'use strict';
 
 angular.module('dataGenerators', [])
-    .service('dataGen', function () {
+	 .service('dataUtils', function () {
+	 
+	 this.roll = function (teamIndex) {
+        		var mod;
+        		if (teamIndex > 8) mod = 8;	// cap it at 8 modifier so that all teams would have a chance of win
+        		else mod = teamIndex;
+        		return Math.floor((Math.random()*10)) - mod;	
+        }
+    
+    this.rollForResult = function (teamIndex1, teamIndex2) {	// executed in makeRound to decide the winner based on team's index
+        		
+        			//var result = {};	
+        			var roll1 = this.roll(teamIndex1);
+        			var roll2 = this.roll(teamIndex2);
+        			
+        			if (roll1 === roll2) return { result1: "drawnteam1", result2: "drawnteam2" };
+        			else if (roll1 > roll2) return { result1: "winteam", result2: "lossteam" };
+        			else if (roll1 < roll2) return { result1: "lossteam", result2: "winteam" };    		
+        	}    
+        
+	 
+	 })
+
+    .service('dataGen', function (dataUtils) {
     this.createTable = function (rounds, startRound, endRound) { // rounds  for data in the compatible format, start round and end round for culling purposes
         var cRound = {}; // current round, current game. Variables reserved for clarity
         var cGame = {};
@@ -58,6 +81,8 @@ angular.module('dataGenerators', [])
         return acTeamsArray;
 
     }
+    
+    
     this.generateRounds = function (teamsArray) {
 
 
@@ -68,31 +93,31 @@ angular.module('dataGenerators', [])
 
             return slots;
         }
-        
+        /*
         function roll (teamIndex) {
         		var mod;
         		if (teamIndex > 8) mod = 8;	// cap it at 8 modifier so that all teams would have a chance of win
         		else mod = teamIndex;
         		return Math.floor((Math.random()*10)) - mod;	
-        }
-        
+        }*/
+        /*
         function rollForResult (teamIndex1, teamIndex2) {	// executed in makeRound to decide the winner based on team's index
         		
         			//var result = {};	
-        			var roll1 = roll(teamIndex1);
-        			var roll2 = roll(teamIndex2);
+        			var roll1 = dataUtils.roll(teamIndex1);
+        			var roll2 = dataUtils.roll(teamIndex2);
         			
         			if (roll1 === roll2) return { result1: "drawnteam1", result2: "drawnteam2" };
         			else if (roll1 > roll2) return { result1: "winteam", result2: "lossteam" };
         			else if (roll1 < roll2) return { result1: "lossteam", result2: "winteam" };    		
-        	}
+        	}*/
         
         function makeRound(tArray, slots) {	// tArray - array of all teams, slots - round robin wheel array
         
             var round = [];
             round[0] = {};
             
-            var rl = rollForResult(0, slots[0]);
+            var rl = dataUtils.rollForResult(0, slots[0]);
             round[0][rl.result1] = tArray[0]; //team1
             round[0][rl.result2] = tArray[slots[0]]; // team1 always plays against slot 0
 
@@ -101,7 +126,7 @@ angular.module('dataGenerators', [])
             for (var slotIndex = 1; slotIndex < tArray.length / 2; slotIndex++) {
 					 var teamIndex1 = slots[slotIndex];
 					 var teamIndex2 = slots[slots.length - pcounter];
-					 var roll = rollForResult( teamIndex1, teamIndex2);      	
+					 var roll = dataUtils.rollForResult( teamIndex1, teamIndex2);      	
             	
                 round[gameIndex] = {};
                 round[gameIndex][roll.result1] = tArray[teamIndex1];

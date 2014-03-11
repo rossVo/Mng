@@ -14,6 +14,7 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
         from: 1,
         to: 11,
         step: 1,
+        smooth: false,
         dimension: " round"        
       };
 		
