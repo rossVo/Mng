@@ -5,6 +5,46 @@
 
 describe('DataGenerators', function () {
 	
+	beforeEach(function () {		
+		module('dataGenerators');			
+	});
+	
+	describe('ShirtGen', function () {
+		
+		var serviceObj;
+		
+		beforeEach(function () {
+			
+			//module('dataGenerators');
+			inject(function (shirtGen) {
+				serviceObj = shirtGen;			
+			});
+		
+		});
+		
+		describe('Generate random colors function randomColors,', function (){
+			it('it should generate specified amount of colors', function() {
+				var amount = 3;
+				expect(serviceObj.randomColors(amount).length).toBe(amount);
+			});
+		});
+
+		describe('genColor() function,', function () {
+			var colorString;
+			beforeEach(function() {
+				colorString = serviceObj.genColor();
+			});
+
+			it ('First letter of color should be hash', function() {			
+				expect(colorString.charAt(0)).toBe('#');
+			});
+			it ('string has to be exactly 7 chars long', function() {
+				expect(colorString.length).toBe(7);
+			});		
+		});
+		
+	});
+	
 	describe('dataUtils', function () {
 
 		var serviceObj;
@@ -12,7 +52,7 @@ describe('DataGenerators', function () {
 		
 		beforeEach(function () {
 			
-			module('dataGenerators');
+//			module('dataGenerators');
 			inject(function (dataUtils) {
 				serviceObj = dataUtils;			
 			})
@@ -72,7 +112,7 @@ describe('DataGenerators', function () {
 		var tableData;
 		
 		beforeEach(function () {
-			module('dataGenerators');				// open relevant module for injector
+//			module('dataGenerators');				// open relevant module for injector
 			inject(function (dataGen) {		// injector will find service by its name 'dataGen'
 				service = dataGen;				// set variable service to refer to dataGen object so that we could access it later in 'it'
 			})
