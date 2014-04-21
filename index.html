@@ -3,10 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>Premier League Table</title>
+  <link rel="stylesheet" href="css/ng-slider.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/bootstrap.css">
   
   
 </head>
 <body ng-controller="TableCtrl">
+
+<div class="borderblock">
+<div class="wrapper">
+<div class="slider">
+<input ng-model="value"  type="text" id="mySlider" slider options="options" /></div>
+<div class="butt">
+<input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate"></div>
+</div>
 
 
   <table id="table1">
@@ -19,6 +30,7 @@
 <td>Points</td>
 </tr>
 <tr ng-repeat="club in table | orderBy:'-pts'">
+<!-- <td><shirt name="{{club.name}}"></shirt></td> -->
   <td>{{$index + 1}}</td>
   <td>{{club.name}}</td>
   <td>{{club.wins}}</td>
@@ -28,14 +40,7 @@
 </tr>
 
 </table>
-
-<div class="sliders">
-<input ng-model="value"  type="text" id="mySlider1" slider options="options" />
 </div>
-<br />
-<input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate">
-
-  
 
 
 <script type="text/javascript" src="lib/angular/angular.js"></script>	
@@ -48,11 +53,7 @@
 <script type="text/javascript" src="js/controllers.js"></script>
 <script type="text/javascript" src="js/services.js"></script>
 
-<link rel="stylesheet" href="css/ng-slider.css">
 
-
-<link rel="stylesheet" href="css/app.css">
-<link rel="stylesheet" href="css/bootstrap.css">
 
   
 </body>

@@ -10,15 +10,38 @@ body {
 	background-color: #FFF;
 }
 
+.borderblock {
+	 width:70%;
+	 margin-left:15%; 
+    margin-right:15%; 
+	 border:2px solid;
+	 border-radius:25px;
+	 padding: 30px;
+
+}
+
 table#table1 {
     width:70%; 
     margin-left:15%; 
     margin-right:15%;
   }
   
-.sliders {
+.slider {
+	float: left;
+	width: 50%;	
+}
+
+.butt {
+	float: left;
 	width: 20%;
-	margin-left:15%;
-	padding: 50px;
+	margin-left: 30px;
 
 }  
+
+.wrapper {
+    width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+    padding-bottom: 40px;
+
+}
