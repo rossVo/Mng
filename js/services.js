@@ -233,8 +233,189 @@ angular.module('dataGenerators', [])
 			
 			return arr;
 		};
+		
+		function createStroke (context, length, type, color, offset, lWidth) {
 
-});
+			context.beginPath();
+			switch (type) {
+			case 0:    // horizontal sleeve
+				context.moveTo(0, length - offset); 
+				context.lineTo(length, length - offset);
+				break;
+			case 1:		// vertical sleeve
+				context.moveTo(length - offset, 0); 
+				context.lineTo(length - offset, length);
+				break;
+			
+			case 2:		// horizontal body
+				context.moveTo(0 + lWidth - 1, 0 + offset); 
+				context.lineTo(length - lWidth + 1, 0 + offset);
+				break;
+			
+			case 3: 	// vertical body
+				context.moveTo(0 + offset, 0 + lWidth - 1); // '- 1 and + 'width are to pretty it up a bit
+				context.lineTo(0 + offset, length - lWidth + 1);
+				break;
+			}
+			context.closePath();
+			context.strokeStyle = color;
+			context.lineWidth = lWidth;
+			context.stroke();
+
+		};		
+
+		function createShirt(colors, designType, numStrokes, canvas) {
+
+			var ctx = canvas.getContext('2d');
+			
+			ctx.restore();
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+
+			var tsbody = {
+					width : 22,
+					height : 36
+			}; // t-shirt body constants
+			var tslsleeve = {
+					width : 13,
+					height : 13
+			}; // t-shirt left sleeve constants
+			var tsrsleeve = {
+					width : 13,
+					height : 13
+			}; // t-shirt right sleeve constants
+
+			var offsetX = 15;
+			var offsetY = 10;
+
+			//var PRIMARYCOLOR = "#FFFFFF"; //white
+			console.log(colors[1]);
+			
+			var PRIMARYCOLOR = colors[0];
+			var SECONDARYCOLOR = colors[1]; //blue
+			var OUTLINECOLOR = "#000000"; // black
+			
+			ctx.save(); // save default coordinates
+
+			//Left sleeve
+			ctx.translate(offsetX, offsetY);
+			ctx.strokeStyle = OUTLINECOLOR;
+			ctx.fillStyle = PRIMARYCOLOR;
+			ctx.lineWidth = 1.0;
+			ctx.rotate(55 * Math.PI / 180);
+			ctx.strokeRect(0, 0, tslsleeve.width, tslsleeve.height);
+			ctx.fillRect(0, 0, tslsleeve.width, tslsleeve.height);
+			
+			// create strokes
+			if (numStrokes != 0 && numStrokes < 5) {
+				var offset = 0;
+				for (var i=0;i<numStrokes;i++) {
+					createStroke(ctx, tslsleeve.width, 0, SECONDARYCOLOR, 2 + offset, 1.0);
+					offset += 2;
+				}
+			}
+			// Right sleeve
+			
+			ctx.restore(); //restore default coordinates
+			ctx.save();
+			ctx.translate(tsbody.width + offsetX, offsetY); // 15+22 (22 width of body)
+			ctx.strokeStyle = OUTLINECOLOR;
+			ctx.fillStyle = PRIMARYCOLOR;
+			ctx.lineWidth = 1.0;
+			ctx.rotate(35 * Math.PI / 180);
+			ctx.strokeRect(0, 0, tsrsleeve.width, tsrsleeve.height);
+			ctx.fillRect(0, 0, tsrsleeve.width, tsrsleeve.height);
+
+			// create strokes
+			if (numStrokes != 0 && numStrokes < 5) {
+				var offset = 0;
+				for (var i=0;i<numStrokes;i++) {
+					createStroke(ctx, tsrsleeve.width, 1, SECONDARYCOLOR, 2 + offset, 1.0);
+					offset += 2;
+				}
+			}
+
+
+			// Body
+			ctx.restore();
+			ctx.save();
+			
+			ctx.fillStyle = PRIMARYCOLOR;
+			ctx.strokeStyle = OUTLINECOLOR;
+			ctx.lineWidth = 0.5;
+			ctx.fillRect(15, 10, 22, 36);
+			ctx.strokeRect(15, 10, 22, 36);
+			
+			
+			// Stripes or half-half designs
+
+			if (designType == 1) {
+				
+				ctx.fillStyle = SECONDARYCOLOR;
+				ctx.fillRect(15, 10, 22/2, 36);
+				
+			}
+			if (designType == 2) {
+				
+				ctx.fillStyle = SECONDARYCOLOR;
+				ctx.fillRect(15, 10, 22, 36/2);
+				
+			}
+			if (designType == 3) { // adds vertical stripes
+				
+				ctx.translate(15, 10);
+				var offset = 0;
+				for(var i=0;i<4;i++) {
+					createStroke(ctx, tsbody.height, 3, SECONDARYCOLOR, 2 + offset, 3);
+					offset += 6;
+				}
+				
+				ctx.restore();
+				ctx.save();
+			}
+			if (designType == 4) {	// adds horizontal stripes		
+
+				ctx.translate(15, 10);
+				
+				var offset = 0;
+				for(var i=0;i<6;i++) {
+					createStroke(ctx, tsbody.width, 2, SECONDARYCOLOR, 2 + offset, 3);
+					offset += 6;
+				}
+				
+				ctx.restore();
+				ctx.save();
+
+			}
+
+			return canvas.toDataURL();
+			
+		}
+
+		this.generateImages = function (canvas, count) {
+//			var canvas = document.getElementById('shirt');
+
+			var shirtHolder = [];
+
+			if (canvas.getContext) {
+				for (var i = 0; i < count; i++){
+
+					shirtHolder[i] = createShirt(this.randomColors(2), Math.floor((Math.random()*4)), Math.floor((Math.random()*4)), canvas);
+//					createShirt signature createShirt(array colors, int designtype, int strokes, canvas obj )
+//					colors : ["#ffff00","#ffff00","#ffff00"], 
+//					designtype: 0 one color body, 1 vertical half-half, 2 horizontal half-half, 3 vertical stripes, 4 horizontal stripes
+//					strokes : should an integer between 0 and 4, determines amount of strokes on the sleeves.
+
+				}
+				return shirtHolder;
+			}
+			else {
+				alert("Your browser doesn't support canvas");
+				return null;
+			}
+			
+		}
+
+	});
 
 
 

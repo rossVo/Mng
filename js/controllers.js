@@ -3,8 +3,13 @@
 angular.module('eplApp',['dataGenerators', 'ngSlider'])
 //angular.module('eplApp',['ngSlider'])
 
-	.controller('TableCtrl', ['$scope','dataGen', function ($scope, dataGenServ) {
+	.controller('TableCtrl', ['$scope','dataGen','shirtGen', function ($scope, dataGenServ, shirtGenServ) {
 		//.controller('TableCtrl', ['$scope', function ($scope) {	
+		
+		var canvas = document.getElementById('canvasimagefactory');
+		var shirtArray = shirtGenServ.generateImages(canvas, 20);
+		
+		$scope.image = shirtArray[0];
 	
 		$scope.endRound = 11;
 		$scope.startRound = 1;
@@ -44,15 +49,17 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 			//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
 			$scope.table = dataGenServ.createTable(rounds, curSliderValues[0], curSliderValues[1]);
 		}
+		
+		
 	
 	}])
 	.directive('shirt', function() {
 		return {
 			restrict: 'E',
 			scope: {
-				customerInfo: '=teamname'
+				teamname: '='
 			},
-			templateUrl: 'shirt.html'
+			templateUrl: 'templates/shirt.html'
 		};
 	});
 
