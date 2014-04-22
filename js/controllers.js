@@ -9,8 +9,6 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		var canvas = document.getElementById('canvasimagefactory');
 		var shirtArray = shirtGenServ.generateImages(canvas, 20);
 		
-		$scope.image = shirtArray[0];
-	
 		$scope.endRound = 11;
 		$scope.startRound = 1;
 	
@@ -30,7 +28,7 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 				function(newValue, oldValue) {
 					if ( newValue !== oldValue ) {
 						var res = newValue.split(";");
-						$scope.table = dataGenServ.createTable(rounds, parseInt(res[0]),  parseInt(res[1])); // parseInt(res[0]) - starting round, parseInt(res[1]) - ending round 
+						$scope.table = dataGenServ.createTable(rounds, parseInt(res[0]),  parseInt(res[1]), shirtArray); // parseInt(res[0]) - starting round, parseInt(res[1]) - ending round 
 					}
 				}
 		);	
@@ -41,13 +39,13 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		var tNames = dataGenServ.genNames(20);
 		var rounds = dataGenServ.generateRounds(tNames);
 		//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
-		$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1]);
+		$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1], shirtArray);
 	
 		$scope.regen = function () {
 			var curSliderValues = $scope.value.split(";");
 			rounds = dataGenServ.generateRounds(tNames);
 			//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
-			$scope.table = dataGenServ.createTable(rounds, curSliderValues[0], curSliderValues[1]);
+			$scope.table = dataGenServ.createTable(rounds, curSliderValues[0], curSliderValues[1], shirtArray);
 		}
 		
 		

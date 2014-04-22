@@ -72,7 +72,7 @@ angular.module('dataGenerators', [])
 			return generatedTeams;
 		}    	
 	
-		this.createTable = function (rounds, startRound, endRound) { // rounds  for data in the compatible format, start round and end round for culling purposes
+		this.createTable = function (rounds, startRound, endRound, shirtArray) { // rounds  for data in the compatible format, start round and end round for culling purposes
 			var cRound = {}; // current round, current game. Variables reserved for clarity
 			var cGame = {};
 	
@@ -87,6 +87,7 @@ angular.module('dataGenerators', [])
 	
 					acTeamsArray.push({});
 					acTeamsArray[tIndex].name = teamName;
+					acTeamsArray[tIndex].shirt = shirtArray[tIndex];
 					acTeamsArray[tIndex].wins = 0;
 					acTeamsArray[tIndex].losses = 0;
 					acTeamsArray[tIndex].draws = 0;
