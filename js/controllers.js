@@ -22,10 +22,10 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		
 
 		
-		$scope.endRound = 11;
-		$scope.startRound = 1;
+//		$scope.endRound = 11;
+//		$scope.startRound = 1;
 	
-		$scope.roundsvalue = "1;12";
+		$scope.roundsvalue = "1;5";
 		$scope.roundsoptions = {       
 				from: 1,
 				to: parseInt($scope.tmcountvalue)-1,
@@ -70,6 +70,13 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		
 		
 		function regenerateTeams (teamcount) {			
+			shirtArray = shirtGenServ.generateImages(canvas, teamcount);
+			tNames = dataGenServ.genNames(teamcount);
+			angular.forEach(tNames, function (value,index) {
+				this[value] = shirtArray[index];
+			}, shirts);
+			rounds = dataGenServ.generateRounds(tNames);
+			
 			// Change options of rounds slider
 			$scope.roundsoptions = {       
 					from: 1,
@@ -78,18 +85,14 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 					smooth: false,
 					dimension: " round"        
 			};
-			
-			shirtArray = shirtGenServ.generateImages(canvas, teamcount);
-			tNames = dataGenServ.genNames(teamcount);
-			angular.forEach(tNames, function (value,index) {
-				this[value] = shirtArray[index];
-			}, shirts);
-			rounds = dataGenServ.generateRounds(tNames);
-			$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1], shirts);			
+			$scope.roundsvalue = "1;" + teamcount;  // watcher calls createTable already no need to repeat it
+//			$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1], shirts);			
 		}
 		
 		$scope.regenTeams = function () {
 			regenerateTeams($scope.tmcountvalue);
+			var sliderValues = $scope.roundsvalue.split(";");
+			$scope.table = dataGenServ.createTable(rounds, sliderValues[0], sliderValues[1], shirts);		
 		}
 	
 		$scope.regenSeason = function () {
