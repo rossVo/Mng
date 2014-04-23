@@ -21,10 +21,11 @@
 					options="roundsoptions" />
 			</div>
 			<div class="butt">
-				<input class="btn-primary" ng-click="regenTeams()" type="submit"
-					value="Re-generate Teams">
-				<input class="btn-primary" ng-click="regenSeason()" type="submit"
-					value="Re-generate season">	
+<!-- 				<input ng-click="regenTeams()" type="submit" -->
+<!-- 					value="Re-generate Teams"> -->
+<!-- 				<input ng-click="regenSeason()" type="submit" -->
+<!-- 					value="Re-generate season"> -->
+				<div class="buttons">Re-generate Teams</div>		
 			</div>
 			<div class="slider">
 				<input ng-model="tmcountvalue" type="text" id="tmcountslider" slider
@@ -37,11 +38,11 @@
 			<tr>
 				<td>Pos</td>
 				<td></td>
-				<td ng-click="predicate = 'name'; reverse=!reverse">Club</td>
-				<td ng-click="predicate = 'wins'; reverse=!reverse">Wins</td>
-				<td ng-click="predicate = 'draws'; reverse=!reverse">Draws</td>
-				<td ng-click="predicate = 'losses'; reverse=!reverse">Losses</td>
-				<td ng-click="predicate = 'pts'; reverse=!reverse">Points</td>
+				<td class="orderby" ng-click="predicate = 'name'; reverse=!reverse">Club</td>
+				<td class="orderby" ng-click="predicate = 'wins'; reverse=!reverse">Wins</td>
+				<td class="orderby" ng-click="predicate = 'draws'; reverse=!reverse">Draws</td>
+				<td class="orderby" ng-click="predicate = 'losses'; reverse=!reverse">Losses</td>
+				<td class="orderby" ng-click="predicate = 'pts'; reverse=!reverse">Points</td>
 			</tr>
 			<tr ng-repeat="club in table | orderBy:predicate:reverse">
 				<!-- <td><shirt name="{{club.name}}"></shirt></td> -->

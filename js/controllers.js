@@ -25,7 +25,7 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 //		$scope.endRound = 11;
 //		$scope.startRound = 1;
 	
-		$scope.roundsvalue = "1;5";
+		$scope.roundsvalue = "1;12";
 		$scope.roundsoptions = {       
 				from: 1,
 				to: parseInt($scope.tmcountvalue)-1,
