@@ -1,61 +1,71 @@
 <!doctype html>
 <html lang="en" ng-app="eplApp">
 <head>
-  <meta charset="utf-8">
-  <title>Premier League Table</title>
-  <link rel="stylesheet" href="css/ng-slider.css">
+<meta charset="utf-8">
+<title>Premier League Table</title>
+<link rel="stylesheet" href="css/ng-slider.css">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/bootstrap.css">
-  
-  
+<link href='http://fonts.googleapis.com/css?family=Supermercado+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+
 </head>
 <body ng-controller="TableCtrl">
 
-<div class="borderblock">
-<div class="wrapper">
-<div class="slider">
-<input ng-model="value"  type="text" id="mySlider" slider options="options" /></div>
-<div class="butt">
-<input class="btn-primary" ng-click="regen()" type="submit" value="Re-generate"></div>
-</div>
-<canvas id="canvasimagefactory" width="50" height="50" style="display:none"></canvas>
-  <table id="table1">
-  <tr class="tableheader">
-  <td>Pos</td>
-  <td> </td>
-  <td>Club</td>
-  <td>Wins</td>
-  <td>Draws</td>
-<td>Losses</td>
-<td>Points</td>
-</tr>
-<tr ng-repeat="club in table | orderBy:'-pts'">
-<!-- <td><shirt name="{{club.name}}"></shirt></td> -->
-  <td>{{$index + 1}}</td>
-  <td><img ng-src="{{club.shirt}}"/></td>
-  <td>{{club.name}}</td>
-  <td>{{club.wins}}</td>
-  <td>{{club.draws}}</td>
-<td>{{club.losses}}</td>
-<td>{{club.pts}}</td>
-</tr>
 
-</table>
-</div>
+	<div class="title">STANDINGS TABLE</div>
+	<div class="borderblock">
+		<div class="wrapper">
+			<div class="slider">
+				<input ng-model="value" type="text" id="mySlider" slider
+					options="options" />
+			</div>
+			<div class="butt">
+				<input class="btn-primary" ng-click="regenTeams()" type="submit"
+					value="Re-generate Teams">
+				<input class="btn-primary" ng-click="regenSeason()" type="submit"
+					value="Re-generate season">	
+			</div>
+		</div>
+		<canvas id="canvasimagefactory" width="50" height="50"
+			style="display: none"></canvas>
+		<table id="table1">
+			<tr>
+				<td>Pos</td>
+				<td></td>
+				<td>Club</td>
+				<td>Wins</td>
+				<td>Draws</td>
+				<td>Losses</td>
+				<td>Points</td>
+			</tr>
+			<tr ng-repeat="club in table | orderBy:'-pts'">
+				<!-- <td><shirt name="{{club.name}}"></shirt></td> -->
+				<td>{{$index + 1}}</td>
+				<td><img ng-src="{{club.shirt}}" /></td>
+				<td>{{club.name}}</td>
+				<td>{{club.wins}}</td>
+				<td>{{club.draws}}</td>
+				<td>{{club.losses}}</td>
+				<td>{{club.pts}}</td>
+			</tr>
 
-
-<script type="text/javascript" src="lib/angular/angular.js"></script>	
-<script type="text/javascript" src="lib/angular/angular-sanitize.js"></script>	
-<script type="text/javascript" src="lib/angular/angular-mocks.js"></script>	
-<script type="text/javascript" src="lib/jquery/jquery.js"></script>	
-<script type="text/javascript" src="lib/ng-slider/ng-slider.js"></script>
-
-
-<script type="text/javascript" src="js/controllers.js"></script>
-<script type="text/javascript" src="js/services.js"></script>
+		</table>
+	</div>
 
 
+	<script type="text/javascript" src="lib/angular/angular.js"></script>
+	<script type="text/javascript" src="lib/angular/angular-sanitize.js"></script>
+	<script type="text/javascript" src="lib/angular/angular-mocks.js"></script>
+	<script type="text/javascript" src="lib/jquery/jquery.js"></script>
+	<script type="text/javascript" src="lib/ng-slider/ng-slider.js"></script>
 
-  
+
+	<script type="text/javascript" src="js/controllers.js"></script>
+	<script type="text/javascript" src="js/services.js"></script>
+
+
+
+
 </body>
 </html>

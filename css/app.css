@@ -1,47 +1,59 @@
 /* app css stylesheet */
-
 body {
-
-  padding: 20px;
+	padding: 20px;
+	font-family: 'Supermercado One', 'cursive';
 }
 
-.tableheader {
-	font-size: 20pt;
-	background-color: #FFF;
+.jslider-value,.jslider-label {
+	font-family: 'Supermercado One', 'cursive';
+	font-size: 0.6em !important;
+}
+
+.borderblock,table,.wrapper,.title {
+	width: 70%;
+	margin: auto;
+}
+
+.wrapper {
+	width: 100%;
+	margin: auto;
+}
+
+.title {
+	font-family: 'Righteous', 'cursive';
+	font-size: 4.5em;
+	position: relative;
+	top: 20px;
+	transform: skewX(20deg);
+	-webkit-transform: skewX(20deg);
 }
 
 .borderblock {
-	 width:70%;
-	 margin-left:15%; 
-    margin-right:15%; 
-	 border:2px solid;
-	 border-radius:25px;
-	 padding: 30px;
-
+	border: 15px solid;
+	/* 	border-radius: 25px; */
+	padding: 30px;
 }
 
-table#table1 {
-    width:70%; 
-    margin-left:15%; 
-    margin-right:15%;
-  }
-  
+table {
+	font-size: 1.6em;
+	width: 100%;
+}
+
+td:hover {
+	text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.28);
+}
+
 .slider {
 	float: left;
-	width: 50%;	
+	width: 50%;
 }
 
 .butt {
 	float: left;
 	width: 20%;
 	margin-left: 30px;
-
-}  
+}
 
 .wrapper {
-    width:70%; 
-    margin-left:15%; 
-    margin-right:15%;
-    padding-bottom: 40px;
-
+	padding-bottom: 40px;
 }

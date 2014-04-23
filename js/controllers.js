@@ -6,12 +6,9 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 	.controller('TableCtrl', ['$scope','dataGen','shirtGen', function ($scope, dataGenServ, shirtGenServ) {
 		//.controller('TableCtrl', ['$scope', function ($scope) {	
 		
+		var teamCount = 22;
 		var canvas = document.getElementById('canvasimagefactory');
-		var shirtArray = shirtGenServ.generateImages(canvas, 20);
-		
-		
-		
-		
+		var shirtArray = shirtGenServ.generateImages(canvas, teamCount);
 		
 		$scope.endRound = 11;
 		$scope.startRound = 1;
@@ -19,7 +16,7 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		$scope.value = "1;12";
 		$scope.options = {       
 				from: 1,
-				to: 19,
+				to: teamCount-1,
 				step: 1,
 				smooth: false,
 				dimension: " round"        
@@ -40,8 +37,8 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 	
 		//var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
 		var initSliderValues = $scope.value.split(";");
-		var tNames = dataGenServ.genNames(20);
 		
+		var tNames = dataGenServ.genNames(teamCount);		
 		var shirts = {};
 		angular.forEach(tNames, function (value,index) {
 			this[value] = shirtArray[index];
@@ -50,8 +47,17 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		var rounds = dataGenServ.generateRounds(tNames);
 		//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
 		$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1], shirts);
+		
+		$scope.regenTeams = function () {
+			tNames = dataGenServ.genNames(teamCount);
+			angular.forEach(tNames, function (value,index) {
+				this[value] = shirtArray[index];
+			}, shirts);
+			rounds = dataGenServ.generateRounds(tNames);
+			$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1], shirts);
+		}
 	
-		$scope.regen = function () {
+		$scope.regenSeason = function () {
 			var curSliderValues = $scope.value.split(";");
 			rounds = dataGenServ.generateRounds(tNames);
 			//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
