@@ -6,8 +6,10 @@
 <link rel="stylesheet" href="css/ng-slider.css">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/bootstrap.css">
-<link href='http://fonts.googleapis.com/css?family=Supermercado+One' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Supermercado+One'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Righteous'
+	rel='stylesheet' type='text/css'>
 
 </head>
 <body ng-controller="TableCtrl">
@@ -16,21 +18,33 @@
 	<div class="title">STANDINGS TABLE</div>
 	<div class="borderblock">
 		<div class="wrapper">
-			<div class="slider">
-				<input ng-model="roundsvalue" type="text" id="roundslider" slider
-					options="roundsoptions" />
+			<div class="sliderwrapper">
+				<span><b>Rounds:</b></span>
+				<div><input ng-model="roundsvalue" type="text" id="roundslider" slider options="roundsoptions" /></div>
+				<span><b>Number of teams:</b></span>
+				<div><input ng-model="tmcountvalue" type="text" id="tmcountslider" slider options="tmcountoptions" /></div>
+			</div>			
+			<div class="buttonswrapper">
+				<div ng-click="regenTeams()">Re-generate Teams</div>
+				<div ng-click="regenSeason()">Re-generate Season</div>
 			</div>
-			<div class="butt">
-<!-- 				<input ng-click="regenTeams()" type="submit" -->
-<!-- 					value="Re-generate Teams"> -->
-<!-- 				<input ng-click="regenSeason()" type="submit" -->
-<!-- 					value="Re-generate season"> -->
-				<div class="buttons">Re-generate Teams</div>		
-			</div>
-			<div class="slider">
-				<input ng-model="tmcountvalue" type="text" id="tmcountslider" slider
-					options="tmcountoptions" />
-			</div>
+		
+		
+<!-- 			<div class="slider"> -->
+<!-- 				<input ng-model="roundsvalue" type="text" id="roundslider" slider -->
+<!-- 					options="roundsoptions" /> -->
+<!-- 			</div> -->
+<!-- 			<div class="butt"> -->
+<!-- 								<input ng-click="regenTeams()" type="submit" -->
+<!-- 									value="Re-generate Teams"> -->
+<!-- 								<input ng-click="regenSeason()" type="submit" -->
+<!-- 									value="Re-generate season"> -->
+<!-- 				<div class="buttons">Re-generate Teams</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="slider"> -->
+<!-- 				<input ng-model="tmcountvalue" type="text" id="tmcountslider" slider -->
+<!-- 					options="tmcountoptions" /> -->
+<!-- 			</div> -->
 		</div>
 		<canvas id="canvasimagefactory" width="50" height="50"
 			style="display: none"></canvas>
@@ -41,7 +55,8 @@
 				<td class="orderby" ng-click="predicate = 'name'; reverse=!reverse">Club</td>
 				<td class="orderby" ng-click="predicate = 'wins'; reverse=!reverse">Wins</td>
 				<td class="orderby" ng-click="predicate = 'draws'; reverse=!reverse">Draws</td>
-				<td class="orderby" ng-click="predicate = 'losses'; reverse=!reverse">Losses</td>
+				<td class="orderby"
+					ng-click="predicate = 'losses'; reverse=!reverse">Losses</td>
 				<td class="orderby" ng-click="predicate = 'pts'; reverse=!reverse">Points</td>
 			</tr>
 			<tr ng-repeat="club in table | orderBy:predicate:reverse">
@@ -57,20 +72,13 @@
 
 		</table>
 	</div>
-
-
 	<script type="text/javascript" src="lib/angular/angular.js"></script>
 	<script type="text/javascript" src="lib/angular/angular-sanitize.js"></script>
 	<script type="text/javascript" src="lib/angular/angular-mocks.js"></script>
 	<script type="text/javascript" src="lib/jquery/jquery.js"></script>
 	<script type="text/javascript" src="lib/ng-slider/ng-slider.js"></script>
 
-
 	<script type="text/javascript" src="js/controllers.js"></script>
 	<script type="text/javascript" src="js/services.js"></script>
-
-
-
-
 </body>
 </html>

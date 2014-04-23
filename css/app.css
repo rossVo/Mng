@@ -9,7 +9,7 @@ body {
 	font-size: 0.6em !important;
 }
 
-.borderblock,table,.wrapper,.title {
+.borderblock,table,.title {
 	width: 70%;
 	margin: auto;
 }
@@ -17,6 +17,7 @@ body {
 .wrapper {
 	width: 100%;
 	margin: auto;
+	padding-bottom: 40px;
 }
 
 .title {
@@ -30,7 +31,6 @@ body {
 
 .borderblock {
 	border: 15px solid;
-	/* 	border-radius: 25px; */
 	padding: 30px;
 }
 
@@ -39,7 +39,7 @@ table {
 	width: 100%;
 }
 
-td:hover {
+td:hover, .buttonswrapper > div:hover {
 	text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.28);
 }
 
@@ -47,25 +47,42 @@ td.orderby {
 	cursor: pointer;	
 }
 
+.sliderwrapper > div{
+	padding: 30px;	
+}
 
-.slider {
+.sliderwrapper > span {
+	
+	display:block;
+	font-size:1.3em;
+	padding: 0px;	
+}
+
+.sliderwrapper, .buttonswrapper{
 	float: left;
 	width: 50%;
-}
-
-.butt {
-	float: left;
-	width: 20%;
-	margin-left: 30px;
-}
-
-.buttons {
-	width:50%;
-	padding: 30px;
-	border: 7px solid;
 	
 }
 
-.wrapper {
-	padding-bottom: 40px;
+.buttonswrapper > div {
+	font-family: 'Righteous', 'cursive';
+	font-size: 1.5em;	
+	cursor: pointer;
+	text-transform: uppercase;
+	float:left;
+	width:30%;
+	margin:10px;
+	padding: 20px;
+	border: 7px solid;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select:none;
+	user-select:none;	
 }
+
+.buttonswrapper > div:active {
+	background-color: black;
+	color:white;	
+}
+
+
