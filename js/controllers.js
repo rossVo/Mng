@@ -9,6 +9,10 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		var canvas = document.getElementById('canvasimagefactory');
 		var shirtArray = shirtGenServ.generateImages(canvas, 20);
 		
+		
+		
+		
+		
 		$scope.endRound = 11;
 		$scope.startRound = 1;
 	
@@ -28,7 +32,7 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 				function(newValue, oldValue) {
 					if ( newValue !== oldValue ) {
 						var res = newValue.split(";");
-						$scope.table = dataGenServ.createTable(rounds, parseInt(res[0]),  parseInt(res[1]), shirtArray); // parseInt(res[0]) - starting round, parseInt(res[1]) - ending round 
+						$scope.table = dataGenServ.createTable(rounds, parseInt(res[0]),  parseInt(res[1]), shirts); // parseInt(res[0]) - starting round, parseInt(res[1]) - ending round 
 					}
 				}
 		);	
@@ -37,28 +41,25 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 		//var rounds = dataGenServ.generateRounds(["ManCity","Tottenham","Everton","Chelsea","Arsenal","Liverpool","Hull","ManU","Swansea","Fulham","WestHam","Newcastle"]);
 		var initSliderValues = $scope.value.split(";");
 		var tNames = dataGenServ.genNames(20);
+		
+		var shirts = {};
+		angular.forEach(tNames, function (value,index) {
+			this[value] = shirtArray[index];
+		}, shirts);
+		
 		var rounds = dataGenServ.generateRounds(tNames);
 		//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
-		$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1], shirtArray);
+		$scope.table = dataGenServ.createTable(rounds, initSliderValues[0], initSliderValues[1], shirts);
 	
 		$scope.regen = function () {
 			var curSliderValues = $scope.value.split(";");
 			rounds = dataGenServ.generateRounds(tNames);
 			//$scope.table = dataGenServ.createTable(rounds, $scope.startRound, $scope.endRound);
-			$scope.table = dataGenServ.createTable(rounds, curSliderValues[0], curSliderValues[1], shirtArray);
+			$scope.table = dataGenServ.createTable(rounds, curSliderValues[0], curSliderValues[1], shirts);
 		}
 		
 		
 	
-	}])
-	.directive('shirt', function() {
-		return {
-			restrict: 'E',
-			scope: {
-				teamname: '='
-			},
-			templateUrl: 'templates/shirt.html'
-		};
-	});
+	}]);
 
 
