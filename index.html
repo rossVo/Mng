@@ -17,7 +17,7 @@
 	<div class="borderblock">
 		<div class="wrapper">
 			<div class="slider">
-				<input ng-model="roundsvalue" type="text" id="mySlider" slider
+				<input ng-model="roundsvalue" type="text" id="roundslider" slider
 					options="roundsoptions" />
 			</div>
 			<div class="butt">
@@ -25,6 +25,10 @@
 					value="Re-generate Teams">
 				<input class="btn-primary" ng-click="regenSeason()" type="submit"
 					value="Re-generate season">	
+			</div>
+			<div class="slider">
+				<input ng-model="tmcountvalue" type="text" id="tmcountslider" slider
+					options="tmcountoptions" />
 			</div>
 		</div>
 		<canvas id="canvasimagefactory" width="50" height="50"
