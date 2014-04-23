@@ -99,6 +99,8 @@ angular.module('eplApp',['dataGenerators', 'ngSlider'])
 			$scope.table = dataGenServ.createTable(rounds, curSliderValues[0], curSliderValues[1], shirts);
 		}
 		
+		$scope.predicate = "-pts";
+		
 		
 	
 	}]);

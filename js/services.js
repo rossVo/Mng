@@ -49,7 +49,7 @@ angular.module('dataGenerators', [])
 			if (teamCount % 2 != 0) teamCount--;	// make sure teamCount is even before proceeding 
 	
 			if (teamCount < 6) teamCount = 6;
-			else if (teamCount > 30 ) teamCount = 30;
+//			else if (teamCount > 30 ) teamCount = 30;
 	
 			var tSuffixes = ["City", "Real", "Athletic", "United", "Wanderers", "Strikers", "Town", "Rovers", "FC", "FC", "FC", "FC", "", "", "", "", "", ];
 			var tCities = ["Addingham", "Baildon", "Bingley", "Burley-in-Wharfedale", "Cottingley", "Crossflatts", "Cullingworth", "Denholme", "East and West Morton", 

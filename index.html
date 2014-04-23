@@ -37,13 +37,13 @@
 			<tr>
 				<td>Pos</td>
 				<td></td>
-				<td>Club</td>
-				<td>Wins</td>
-				<td>Draws</td>
-				<td>Losses</td>
-				<td>Points</td>
+				<td ng-click="predicate = 'name'; reverse=!reverse">Club</td>
+				<td ng-click="predicate = 'wins'; reverse=!reverse">Wins</td>
+				<td ng-click="predicate = 'draws'; reverse=!reverse">Draws</td>
+				<td ng-click="predicate = 'losses'; reverse=!reverse">Losses</td>
+				<td ng-click="predicate = 'pts'; reverse=!reverse">Points</td>
 			</tr>
-			<tr ng-repeat="club in table | orderBy:'-pts'">
+			<tr ng-repeat="club in table | orderBy:predicate:reverse">
 				<!-- <td><shirt name="{{club.name}}"></shirt></td> -->
 				<td>{{$index + 1}}</td>
 				<td><img ng-src="{{club.shirt}}" /></td>
