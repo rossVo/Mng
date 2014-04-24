@@ -130,8 +130,7 @@ describe('DataGenerators,', function () {
 				
 				});
 				
-				it('genNames should exceed the limit of 30 teams and minimum of 6 teams', function () {
-					expect(service.genNames(55).length).toEqual(30);
+				it('genNames should not generate less than 6 teams', function () {
 					expect(service.genNames(2).length).toEqual(6);					
 				});		
 		
